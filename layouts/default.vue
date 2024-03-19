@@ -6,7 +6,7 @@
   <div class="app min-h-[100vh] shadow-md">
 
     <van-sticky :offset-top="0">
-      <header class="shadow-sm">
+      <header>
           <AppHeader />
         </header>
     </van-sticky>

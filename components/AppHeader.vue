@@ -3,8 +3,8 @@
 </script>
 
 <template>
-  <div class="header bg-white relative">
-    <div class="header-bar absolute top-0 z-10">
+  <div class="header bg-white">
+    <div class="header-bar">
       213
     </div>
     <div class="header-profile relative brightness-50">

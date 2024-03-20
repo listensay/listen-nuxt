@@ -3,9 +3,14 @@
 </script>
 
 <template>
-  <div class="header bg-white">
-    <div class="header-bar">
-      213
+  <div class="header bg-white relative text-white">
+    <div class="header-bar absolute z-10 px-8 py-4 flex justify-between w-full">
+      <div>
+        left
+      </div>
+      <div>
+        right
+      </div>
     </div>
     <div class="header-profile relative brightness-50">
       <img src="~/assets/images/bg.jpg" class="w-full h-64 max-md:h-52 object-cover bg-cover" alt="bg">
@@ -14,7 +19,7 @@
 
       <div class="flex justify-end items-center">
         <div class="mr-4 flex flex-col items-end">
-          <div class=" text-white text-xl">Milk</div>
+          <div class="text-white text-xl z-10">Milk</div>
         </div>
         <div>
           <img src="~/assets/images/avatar.png" class="w-20 h-20 relative rounded-md shadow" alt="avatar">

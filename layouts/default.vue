@@ -3,13 +3,11 @@
 </script>
 
 <template>
-  <div class="app min-h-[100vh] shadow-md">
+  <div class="app shadow-md min-h-[100vh]">
 
-    <van-sticky :offset-top="0">
-      <header>
-          <AppHeader />
-        </header>
-    </van-sticky>
+    <header class="sticky top-[0px]">
+      <AppHeader />
+    </header>
 
     <main class="m-8">
       <p>213</p>
@@ -74,6 +72,7 @@
       <p>213</p>
       <slot />
     </main>
+
     <van-sticky :offset-bottom="0" position="bottom">
       <footer class="bg-white p-4 border-t text-center">Milk Blog &copy; 2024</footer>
     </van-sticky>

@@ -3,73 +3,13 @@
 </script>
 
 <template>
-  <div class="app shadow-md min-h-[100vh]">
+  <div class="app shadow-md">
 
-    <header class="sticky top-[0px]">
+    <header class="sticky top-0">
       <AppHeader />
     </header>
 
-    <main class="m-8">
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
-      <p>213</p>
+    <main class="m-8 overflow-auto">
       <slot />
     </main>
 

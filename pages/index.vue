@@ -4,7 +4,11 @@
 
 <template>
   <div class="home">
-    <h2>home</h2>
+    <ul>
+      <li>
+        <ArticleItem v-for="item in 8" :key="item"/>
+      </li>
+    </ul>
   </div>
 </template>
 

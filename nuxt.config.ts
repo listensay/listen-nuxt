@@ -2,9 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
-    public: {
-      SECRET_KEY: process.env.SECRET_KEY
-    }
+    SECRET_KEY: process.env.SECRET_KEY
   },
   modules: ["@nuxt/ui", "@vant/nuxt"],
   css: [

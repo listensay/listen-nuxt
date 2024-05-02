@@ -14,7 +14,6 @@ export default defineEventHandler(async event => {
 
     return successReq(token, '登陆成功')
   } catch (error) {
-    console.log(error)
     return errorReq(400, event, '登陆失败')
   }
 })

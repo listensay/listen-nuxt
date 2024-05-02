@@ -97,8 +97,24 @@ export const login = async (username: string, password: string) => {
         username: user.username
       },
       exp: Math.floor(Date.now() / 1000) + (60 * 60)
-    }, useRuntimeConfig().public.SECRET_KEY)
+    }, useRuntimeConfig().SECRET_KEY)
 
   return token
 
+}
+/**
+ * 判断是否是管理员
+ */
+export const checkAdmin = async (id: number) => {
+  const user = await usePrisma.user.findFirst({
+    where: {
+      id
+    }
+  })
+
+  if (!user) {
+    throw Error('用户不存在')
+  }
+
+  return user.role === 'ADMIN' ? true : false
 }

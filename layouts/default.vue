@@ -13,9 +13,7 @@
       <slot />
     </main>
 
-    <van-sticky :offset-bottom="0" position="bottom">
       <footer class="bg-white p-4 border-t text-center">Milk Blog &copy; 2024</footer>
-    </van-sticky>
   </div>
 </template>
 

@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  nickname    String
+  description String?
+  bio         String?
+  username    String    @unique
+  password    String
+  email       String    @unique
+  avatar      String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  articles    Article[]
+  comments    Comment[]
+}
+
+model Article {
+  id          Int       @id @default(autoincrement())
+  title       String
+  content     String
+  keywords    String?
+  description String?
+  location    String?
+  likes       Int?
+  views       Int?
+  authorId    Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  author      User      @relation(fields: [authorId], references: [id])
+  comments    Comment[]
+
+  @@index([authorId], map: "Article_authorId_fkey")
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  articleId Int
+  authorId  Int
+  article   Article  @relation(fields: [articleId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id])
+
+  @@index([articleId], map: "Comment_articleId_fkey")
+  @@index([authorId], map: "Comment_authorId_fkey")
+}

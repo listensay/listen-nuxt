@@ -11,12 +11,17 @@
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
+    "bcryptjs": "^2.4.3",
+    "joi": "^17.13.0",
+    "jsonwebtoken": "^9.0.2",
     "less": "^4.2.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@nuxt/ui": "^2.14.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.6",
     "@vant/nuxt": "^1.0.4",
     "nuxt": "^3.11.2",
     "prisma": "^5.13.0"

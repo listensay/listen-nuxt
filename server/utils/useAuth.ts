@@ -1,7 +1,7 @@
 // 判断是否登陆
 export const useAuth = (event: any) => {
-  if(event.context.auth) {
-    throw new Error('权限无效')
+  if(!event.context.auth) {
+    throw new Error('非法请求')
   }
 
   return event.context.auth

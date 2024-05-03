@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     SECRET_KEY: process.env.SECRET_KEY
   },
-  modules: ["@nuxt/ui", "@vant/nuxt"],
+  modules: ["@vant/nuxt", "@nuxtjs/tailwindcss"],
   css: [
     '~/assets/css/index.css'
   ]

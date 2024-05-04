@@ -1,4 +1,27 @@
 <script setup>
+const isOpen = ref(false)
+const cookie = useCookie('token')
+
+function close() {
+  isOpen.value = false
+}
+
+function open() {
+  isOpen.value = true
+}
+
+const form = reactive({
+  username: '',
+  password: ''
+})
+
+const onFinish = () => {
+  useApi().login(form).then(res => {
+    cookie.value = res.data
+    useToast().success('登录成功')
+    isOpen.value = false
+  })
+}
 
 </script>
 
@@ -9,11 +32,25 @@
         left
       </div>
       <div>
-        right
+        <a href="javascript:;" @click="open">
+          <!-- <MazIcon icon="login"></MazIcon> -->
+        </a>
+        <a-dropdown>
+          <a class="ant-dropdown-link" @click.prevent>
+            <MazIcon name="list-bullet" size="2rem" />
+          </a>
+          <template #overlay>
+            <a-menu>
+              <a-menu-item key="1">1st menu item</a-menu-item>
+              <a-menu-item key="2">2nd menu item</a-menu-item>
+              <a-menu-item key="3">3rd menu item</a-menu-item>
+            </a-menu>
+          </template>
+        </a-dropdown>
       </div>
     </div>
     <div class="header-profile relative brightness-50">
-      <img src="~/assets/images/bg.jpg" class="w-full h-64 max-md:h-52 object-cover bg-cover" alt="bg">
+      <img src="/images/banner.jpeg" class="w-full h-64 max-md:h-52 object-cover bg-cover" alt="bg">
     </div>
     <div class="profle">
 
@@ -28,6 +65,37 @@
 
       <div class="desc mb-2 py-4 px-0 flex justify-end text-sm text-zinc-600">不要倒在黎明前的黑夜里</div>
     </div>
+
+    <MazDialog v-model="isOpen" title="登陆">
+
+      <a-form
+        :model="form"
+        name="basic"
+        autocomplete="off"
+        @finish="onFinish"
+      >
+        <a-form-item
+          label="Username"
+          name="username"
+          :rules="[{ required: true, message: 'Please input your username!' }]"
+        >
+          <a-input v-model:value="form.username" />
+        </a-form-item>
+    
+        <a-form-item
+          label="Password"
+          name="password"
+          :rules="[{ required: true, message: 'Please input your password!' }]"
+        >
+          <a-input-password v-model:value="form.password" />
+        </a-form-item>
+
+        <div class="w-full flex justify-end mt-2">
+          <MazBtn type="submit">登陆</MazBtn>
+        </div>
+
+      </a-form>
+    </MazDialog>
   </div>
 </template>
 

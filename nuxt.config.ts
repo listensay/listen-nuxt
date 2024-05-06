@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   runtimeConfig: {
     SECRET_KEY: process.env.SECRET_KEY
   },
@@ -19,6 +19,14 @@ export default defineNuxtConfig({
     injectUseToast: true,
     injectUseThemeHandler: true,
     devtools: true,
+  },
+  nitro: {
+    devProxy: {
+      '/music': {
+        target: 'https://music.163.com/',
+        changeOrigin: true
+      }
+    },
   },
   css: [
     '~/assets/css/index.css'

@@ -23,13 +23,41 @@ const onFinish = () => {
   })
 }
 
+const aplayerRef = ref(null)
+
+const isPlay = ref(false)
+
+const play = () => {
+  aplayerRef.value.play()
+  isPlay.value = true
+  useToast().success('播放音乐')
+}
+
+const pause = () => {
+  aplayerRef.value.pause()
+  isPlay.value = false
+  useToast().success('暂停音乐')
+}
+
+const playHandle = () => {
+  isPlay.value = true
+}
+
+const pauseHandle = () => {
+  isPlay.value = false
+}
 </script>
 
 <template>
   <div class="header bg-white relative text-white">
     <div class="header-bar absolute z-10 px-8 py-4 flex justify-between w-full">
       <div>
-        left
+          <a href="javascript:;" @click="play" v-if="!isPlay">
+            <MazIcon name="play-circle" size="1.6rem"/>
+          </a>
+          <a href="javascript:;" @click="pause" v-else="isPlay">
+            <MazIcon name="pause-circle" size="1.6rem"/>
+          </a>
       </div>
       <div>
         <a href="javascript:;" @click="open">
@@ -37,7 +65,7 @@ const onFinish = () => {
         </a>
         <a-dropdown>
           <a class="ant-dropdown-link" @click.prevent>
-            <MazIcon name="list-bullet" size="2rem" />
+            <MazIcon name="list-bullet" size="1.6rem" />
           </a>
           <template #overlay>
             <a-menu>
@@ -96,6 +124,8 @@ const onFinish = () => {
 
       </a-form>
     </MazDialog>
+
+    <Aplayer id="3077886846" ref="aplayerRef" @pause="pauseHandle" @play="playHandle" />
   </div>
 </template>
 
@@ -105,4 +135,5 @@ const onFinish = () => {
     @apply  -mt-16 mr-8;
   }
 }
+
 </style>

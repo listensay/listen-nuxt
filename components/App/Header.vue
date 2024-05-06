@@ -78,7 +78,7 @@ const pauseHandle = () => {
       </div>
     </div>
     <div class="header-profile relative brightness-50">
-      <img src="/images/banner.jpeg" class="w-full h-64 max-md:h-52 object-cover bg-cover" alt="bg">
+      <img src="/images/banner.jpg" class="w-full h-64 max-md:h-52 object-cover bg-cover" alt="bg">
     </div>
     <div class="profle">
 

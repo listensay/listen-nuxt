@@ -24,4 +24,3 @@ logs
 !.env.example
 
 # 忽略文件
-public/

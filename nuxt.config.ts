@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     "@vant/nuxt",
     "@nuxtjs/tailwindcss",
     "@ant-design-vue/nuxt",
-    "maz-ui/nuxt"
+    "maz-ui/nuxt",
+    "@pinia/nuxt"
   ],
   mazUi: {
     injectComponents: true,

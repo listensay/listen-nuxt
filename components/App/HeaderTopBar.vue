@@ -68,13 +68,17 @@ const openWriteHandle = () => {
 // 文章表单
 const article = reactive({
   content: '',
-  image: ''
+  photos: []
 })
 
 // 上传文件
 const afterRead = (file) => {
-  useApi().upload({ file: file.file }).then(res => {
-    console.log(res)
+
+  const forms = new FormData();
+  forms.append("file", file.file); // 获取上传图片信息
+
+  useApi().upload(forms).then(res => {
+    article.photos.push(res.data[0].url)
   }).catch(err => {
     console.log(err)
   })
@@ -82,6 +86,11 @@ const afterRead = (file) => {
 
 // 文件预览
 const fileList = ref([])
+
+// 发布文章
+const pushArticle = () => {
+  console.log(article)
+}
 </script>
 
 <template>
@@ -156,10 +165,10 @@ const fileList = ref([])
 
             <div class="mb-4 flex justify-center">
               <div class="mx-2">
-                <MazBtn color="black" pastel>取消</MazBtn>
+                <MazBtn color="black" pastel @click="openWrite = false">取消</MazBtn>
               </div>
               <div class="mx-2">
-                <MazBtn color="secondary">发布</MazBtn>
+                <MazBtn color="secondary" @click="pushArticle">发布</MazBtn>
               </div>
             </div>
           </MazDialog>

@@ -1,5 +1,4 @@
 import joi from 'joi'
-import bcrypt from 'bcryptjs'
 
 export default defineEventHandler(async event => {
   const body = await readBody(event)

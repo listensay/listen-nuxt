@@ -118,3 +118,27 @@ export const checkAdmin = async (id: number) => {
 
   return user.role === 'ADMIN' ? true : false
 }
+
+// 获取用户信息
+export const getUserInfo = async (id: number) => {
+  const user = await usePrisma.user.findFirst({
+    where: {
+      id
+    },
+    select: {
+      nickname: true,
+      username: true,
+      description: true,
+      avatar: true,
+      role: true,
+      createdAt: true,
+      email: true,
+    }
+  })
+
+  if (!user) {
+    throw Error('用户不存在')
+  }
+
+  return user
+}

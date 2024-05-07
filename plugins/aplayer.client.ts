@@ -1,6 +1,6 @@
 import Aplyer from 'aplayer'
 
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin(() => {
   return {
     provide: {
       aplayer: Aplyer

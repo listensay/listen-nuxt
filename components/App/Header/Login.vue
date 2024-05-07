@@ -1,5 +1,8 @@
 <script setup>
+import useAppStore from '~/store'
+
 const openDialog = defineModel()
+const emit = defineEmits(['register'])
 const cookie = useCookie('token')
 
 function close() {
@@ -11,23 +14,36 @@ const form = reactive({
   password: ''
 })
 
-const onFinish = () => {
+const onFinish = (values) => {
   useApi()
-    .login(form)
+    .login(values)
     .then((res) => {
       cookie.value = res.data
       useToast().success('登录成功')
+      form.username = ''
+      form.password = ''
+      useAppStore().isLogin = true
       openDialog.value = false
     })
+}
+
+const register = () => {
+  emit('register')
 }
 </script>
 
 <template>
   <div>
     <MazDialog v-model="openDialog" title="登陆" @close="close">
-      <a-form :model="form" name="basic" autocomplete="off" @finish="onFinish">
+      <a-form
+        :model="form"
+        name="basic"
+        autocomplete="off"
+        :label-col="{ style: { width: '70px' } }"
+        @finish="onFinish"
+      >
         <a-form-item
-          label="Username"
+          label="用户名"
           name="username"
           :rules="[{ required: true, message: 'Please input your username!' }]"
         >
@@ -35,7 +51,7 @@ const onFinish = () => {
         </a-form-item>
 
         <a-form-item
-          label="Password"
+          label="密码"
           name="password"
           :rules="[{ required: true, message: 'Please input your password!' }]"
         >
@@ -43,7 +59,10 @@ const onFinish = () => {
         </a-form-item>
 
         <div class="w-full flex justify-end mt-2">
-          <MazBtn type="submit">登陆</MazBtn>
+          <a-button type="text" class="mr-2" @click="register"
+            >没有账号？</a-button
+          >
+          <a-button type="primary" html-type="submit">登陆</a-button>
         </div>
       </a-form>
     </MazDialog>

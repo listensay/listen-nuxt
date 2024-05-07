@@ -1,18 +1,24 @@
 <script setup>
 import useAppStore from '~/store'
 
-const isLogin = ref(false)
+const AppStore = useAppStore()
+const { isLogin } = storeToRefs(AppStore)
+const toast = useToast()
 
 if (process.client) {
-  const AppStore = useAppStore()
-  AppStore.isLogin = !!useCookie('token').value
+  isLogin.value = !!useCookie('token').value
   isLogin.value = AppStore.isLogin
 }
 
+// 登陆弹窗
 const isOpenLogin = ref(false)
+
 const openLoginHandle = () => {
   isOpenLogin.value = true
 }
+
+// 注册弹唱
+const isOpenRegister = ref(false)
 
 const aplayerRef = ref(null)
 
@@ -21,13 +27,13 @@ const isPlay = ref(false)
 const play = () => {
   aplayerRef.value.play()
   isPlay.value = true
-  useToast().success('播放音乐')
+  toast.success('播放音乐')
 }
 
 const pause = () => {
   aplayerRef.value.pause()
   isPlay.value = false
-  useToast().success('暂停音乐')
+  toast.success('暂停音乐')
 }
 
 const playHandle = () => {
@@ -41,13 +47,25 @@ const pauseHandle = () => {
 const openWrite = ref(false)
 
 const openWriteHandle = () => {
-  openWrite.value = true
+  if (isLogin.value) {
+    return (openWrite.value = true)
+  }
+
+  // 未登陆
+  openLoginHandle()
+  toast.info('登陆后才能发内容 QAQ')
+}
+
+const register = () => {
+  isOpenLogin.value = false
+  isOpenRegister.value = true
 }
 </script>
 
 <template>
   <div>
     <div class="header-bar absolute z-10 px-8 py-4 flex justify-between w-full">
+      <!-- 播放器 -->
       <div>
         <template v-if="!isPlay">
           <a href="javascript:;" @click="play">
@@ -61,6 +79,7 @@ const openWriteHandle = () => {
         </template>
       </div>
       <div class="flex items-center">
+        <!-- 登陆按钮 -->
         <template v-if="!isLogin">
           <a href="javascript:;" class="mr-2" @click="openLoginHandle">
             <MazIcon name="user-circle" size="1.45rem" />
@@ -73,8 +92,11 @@ const openWriteHandle = () => {
       </div>
     </div>
 
-    <AppHeaderLogin v-model="isOpenLogin" />
-
+    <!-- 登陆对话框 -->
+    <AppHeaderLogin v-model="isOpenLogin" @register="register" />
+    <!-- 注册对话框 -->
+    <AppHeaderRegister v-model="isOpenRegister" @login="openLoginHandle" />
+    <!-- 写文章对话框 -->
     <AppHeaderWrite v-model="openWrite" />
 
     <Aplayer

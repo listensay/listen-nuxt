@@ -1,9 +1,9 @@
 const useAppStore = defineStore('app', {
-    state: () => {
-        return {
-            isLogin: false,
-        }
+  state: () => {
+    return {
+      isLogin: false
     }
+  }
 })
 
 export default useAppStore

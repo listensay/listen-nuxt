@@ -1,4 +1,4 @@
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   // 判断是否登陆
   try {
     useAuth(event)
@@ -8,7 +8,7 @@ export default defineEventHandler(async event => {
 
   try {
     // 业务代码
-    
+
     return successReq(null, 'OK')
   } catch (error: any) {
     return errorReq(500, event, error.message)

@@ -1,6 +1,6 @@
 import joi from 'joi'
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
   try {
@@ -9,7 +9,7 @@ export default defineEventHandler(async event => {
       nickname: joi.string().min(1).max(18).required(),
       email: joi.string().email().required(),
       username: joi.string().min(3).max(18).required(),
-      password: joi.string().min(6).max(18).required(),
+      password: joi.string().min(6).max(18).required()
     })
 
     // 注册用户

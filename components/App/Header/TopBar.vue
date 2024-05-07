@@ -3,13 +3,11 @@ import useAppStore from '~/store'
 
 const isLogin = ref(false)
 
-if(process.client) {
+if (process.client) {
   const AppStore = useAppStore()
-  AppStore.isLogin = useCookie('token').value ? true : false
+  AppStore.isLogin = !!useCookie('token').value
   isLogin.value = AppStore.isLogin
 }
-
-const { useToast } = useAppStore()
 
 const isOpenLogin = ref(false)
 const openLoginHandle = () => {
@@ -48,36 +46,42 @@ const openWriteHandle = () => {
 </script>
 
 <template>
-    <div>
-        <div class="header-bar absolute z-10 px-8 py-4 flex justify-between w-full">
-            <div>
-                <a href="javascript:;" @click="play" v-if="!isPlay">
-                  <MazIcon name="play-circle" size="1.6rem"/>
-                </a>
-                <a href="javascript:;" @click="pause" v-else="isPlay">
-                  <MazIcon name="pause-circle" size="1.6rem"/>
-                </a>
-            </div>
-            <div class="flex items-center">
+  <div>
+    <div class="header-bar absolute z-10 px-8 py-4 flex justify-between w-full">
+      <div>
+        <template v-if="!isPlay">
+          <a href="javascript:;" @click="play">
+            <MazIcon name="play-circle" size="1.6rem" />
+          </a>
+        </template>
+        <template v-else>
+          <a href="javascript:;" @click="pause">
+            <MazIcon name="pause-circle" size="1.6rem" />
+          </a>
+        </template>
+      </div>
+      <div class="flex items-center">
+        <template v-if="!isLogin">
+          <a href="javascript:;" class="mr-2" @click="openLoginHandle">
+            <MazIcon name="user-circle" size="1.45rem" />
+          </a>
+        </template>
 
-                <template v-if="!isLogin">
-                  <div>
-                    <a href="javascript:;" @click="openLoginHandle" class="mr-2">
-                      <MazIcon name="user-circle" size="1.45rem" />
-                    </a>
-                  </div>
-                </template>
-
-                <a href="javascript:;" @click="openWriteHandle" class="mr-2">
-                  <MazIcon name="camera" size="1.45rem"/>
-                </a>
-            </div>
-          </div>
-
-          <AppHeaderLogin v-model="isOpenLogin"/>
-
-          <AppHeaderWrite v-model="openWrite"/>
-  
-          <Aplayer id="3077886846" ref="aplayerRef" @pause="pauseHandle" @play="playHandle" />
+        <a href="javascript:;" class="mr-2" @click="openWriteHandle">
+          <MazIcon name="camera" size="1.45rem" />
+        </a>
+      </div>
     </div>
+
+    <AppHeaderLogin v-model="isOpenLogin" />
+
+    <AppHeaderWrite v-model="openWrite" />
+
+    <Aplayer
+      id="3077886846"
+      ref="aplayerRef"
+      @pause="pauseHandle"
+      @play="playHandle"
+    />
+  </div>
 </template>

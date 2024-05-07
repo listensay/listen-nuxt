@@ -8,8 +8,7 @@ import joi from 'joi'
  * @returns boolean值
  */
 const useValidate = async (body: any, options: any) => {
-
-  const schema = joi.object({...options})
+  const schema = joi.object({ ...options })
 
   try {
     await schema.validateAsync(body)

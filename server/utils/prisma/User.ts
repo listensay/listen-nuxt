@@ -9,28 +9,28 @@ import Jwt from 'jsonwebtoken'
  * @author: Milk
  */
 export const checkUser = async (username: string, email: string) => {
-    // 先查询用户名是否存在
-    const chaeckUsername = await usePrisma.user.findFirst({
-      where: {
-        username,
-      }
-    })
-
-    // 判断用户名是否存在
-    if(chaeckUsername) {
-      throw Error('用户名已存在')
+  // 先查询用户名是否存在
+  const chaeckUsername = await usePrisma.user.findFirst({
+    where: {
+      username
     }
+  })
 
-    // 查询邮箱是否存在
-    const checkEmail = await usePrisma.user.findFirst({
-      where: {
-        email,
-      }
-    })
+  // 判断用户名是否存在
+  if (chaeckUsername) {
+    throw new Error('用户名已存在')
+  }
 
-    if(checkEmail) {
-      throw Error('邮箱已存在')
+  // 查询邮箱是否存在
+  const checkEmail = await usePrisma.user.findFirst({
+    where: {
+      email
     }
+  })
+
+  if (checkEmail) {
+    throw new Error('邮箱已存在')
+  }
 }
 
 /**
@@ -57,11 +57,11 @@ export const register = async (body: any) => {
         nickname,
         avatar: 'https://avatars.githubusercontent.com/u/11685308?v=4',
         createdAt: new Date(),
-        updatedAt: new Date(),
+        updatedAt: new Date()
       }
     })
   } catch (error) {
-    throw Error('注册失败')
+    throw new Error('注册失败')
   }
 }
 
@@ -73,7 +73,6 @@ export const register = async (body: any) => {
  * @author Milk
  */
 export const login = async (username: string, password: string) => {
-
   // 查询用户是否存在
   const user = await usePrisma.user.findFirst({
     where: {
@@ -81,13 +80,13 @@ export const login = async (username: string, password: string) => {
     }
   })
 
-  if(!user) {
-    throw Error('用户不存在')
+  if (!user) {
+    throw new Error('用户不存在')
   }
 
   const isPasswordValid = bcrypt.compareSync(password, user.password)
-  if(!isPasswordValid) {
-    throw Error('密码错误')
+  if (!isPasswordValid) {
+    throw new Error('密码错误')
   }
 
   const token = Jwt.sign(
@@ -96,11 +95,12 @@ export const login = async (username: string, password: string) => {
         id: user.id,
         username: user.username
       },
-      exp: Math.floor(Date.now() / 1000) + (60 * 60)
-    }, useRuntimeConfig().SECRET_KEY)
+      exp: Math.floor(Date.now() / 1000) + 60 * 60
+    },
+    useRuntimeConfig().SECRET_KEY
+  )
 
   return token
-
 }
 /**
  * 判断是否是管理员
@@ -113,10 +113,10 @@ export const checkAdmin = async (id: number) => {
   })
 
   if (!user) {
-    throw Error('用户不存在')
+    throw new Error('用户不存在')
   }
 
-  return user.role === 'ADMIN' ? true : false
+  return user.role === 'ADMIN'
 }
 
 // 获取用户信息
@@ -132,12 +132,12 @@ export const getUserInfo = async (id: number) => {
       avatar: true,
       role: true,
       createdAt: true,
-      email: true,
+      email: true
     }
   })
 
   if (!user) {
-    throw Error('用户不存在')
+    throw new Error('用户不存在')
   }
 
   return user

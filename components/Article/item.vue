@@ -1,5 +1,5 @@
 <script setup>
-const showPopover = ref(false);
+const showPopover = ref(false)
 const actions = [
   {
     text: '赞',
@@ -8,8 +8,8 @@ const actions = [
   {
     text: '评论',
     icon: 'comment-o'
-  },
-];
+  }
+]
 
 function selectHandle(e, index) {
   console.log(e, index)
@@ -19,10 +19,9 @@ function selectHandle(e, index) {
 <template>
   <div class="article-item">
     <div class="avatar">
-      <img src="~/assets/images/avatar.png" alt="avatar">
+      <img src="~/assets/images/avatar.png" alt="avatar" />
     </div>
     <div class="article-content">
-
       <div class="name">很简单</div>
 
       <div class="content text-sm">
@@ -32,28 +31,24 @@ function selectHandle(e, index) {
       <div class="flex items-center justify-between mb-2">
         <time datetime="2021-08-24" class="time text-sm">2021-08-24</time>
         <div>
-
           <van-popover
             v-model:show="showPopover"
             :actions="actions"
-            @select="selectHandle"
             actions-direction="horizontal"
             placement="left"
             theme="dark"
+            @select="selectHandle"
           >
             <template #reference>
-              <van-button size="small" class=" bg-slate-100">
+              <van-button size="small" class="bg-slate-100">
                 <van-icon name="weapp-nav" />
               </van-button>
             </template>
           </van-popover>
-
         </div>
       </div>
 
-      <div class="article-detail">
-        123123
-      </div>
+      <div class="article-detail">123123</div>
     </div>
   </div>
 </template>

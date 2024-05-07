@@ -1,10 +1,7 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
   <div class="app shadow-md">
-
     <header class="sticky top-0">
       <AppHeader />
     </header>
@@ -13,13 +10,13 @@
       <slot />
     </main>
 
-      <footer class="bg-white p-4 border-t text-center">Milk Blog &copy; 2024</footer>
+    <footer class="bg-white p-4 border-t text-center">
+      Milk Blog &copy; 2024
+    </footer>
   </div>
 </template>
 
-<style lang="less" scoped>
-
-</style>
+<style lang="less" scoped></style>
 
 <style lang="less">
 .app {

@@ -1,4 +1,4 @@
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   try {
     const auth = await useAuth(event)
     const user = await getUserInfo(auth.user.data.id)

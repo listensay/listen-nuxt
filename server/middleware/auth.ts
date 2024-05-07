@@ -1,16 +1,16 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken'
 
-export default defineEventHandler(async (event)=>{
-  //获取token值
-  let token = getHeader(event,"Authorization")
+export default defineEventHandler(async (event) => {
+  // 获取token值
+  const token = getHeader(event, 'Authorization')
 
   if (token) {
-    //获取秘钥
-    let secret = useRuntimeConfig().SECRET_KEY
+    // 获取秘钥
+    const secret = useRuntimeConfig().SECRET_KEY
 
     // 验证token
     try {
-      const decoded = <any> jwt.verify(token, secret);
+      const decoded = <any>jwt.verify(token, secret)
       // 验证是否是管理员
       const isAdmin = await checkAdmin(decoded.id)
 

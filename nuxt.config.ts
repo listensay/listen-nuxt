@@ -5,21 +5,21 @@ export default defineNuxtConfig({
     SECRET_KEY: process.env.SECRET_KEY
   },
   modules: [
-    "@vant/nuxt",
-    "@nuxtjs/tailwindcss",
-    "@ant-design-vue/nuxt",
-    "maz-ui/nuxt",
-    "@pinia/nuxt"
+    '@vant/nuxt',
+    '@nuxtjs/tailwindcss',
+    '@ant-design-vue/nuxt',
+    'maz-ui/nuxt',
+    '@pinia/nuxt'
   ],
   mazUi: {
     injectComponents: true,
     injectCss: true,
     injectAos: {
-      injectCss: true,
+      injectCss: true
     },
     injectUseToast: true,
     injectUseThemeHandler: true,
-    devtools: true,
+    devtools: true
   },
   nitro: {
     devProxy: {
@@ -27,9 +27,7 @@ export default defineNuxtConfig({
         target: 'https://music.163.com/',
         changeOrigin: true
       }
-    },
+    }
   },
-  css: [
-    '~/assets/css/index.css'
-  ]
+  css: ['~/assets/css/index.css']
 })

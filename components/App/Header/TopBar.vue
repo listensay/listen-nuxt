@@ -99,11 +99,6 @@ const register = () => {
     <!-- 写文章对话框 -->
     <AppHeaderWrite v-model="openWrite" />
 
-    <Aplayer
-      id="3077886846"
-      ref="aplayerRef"
-      @pause="pauseHandle"
-      @play="playHandle"
-    />
+    <Aplayer id="3077886846" ref="aplayerRef" @pause="pauseHandle" @play="playHandle" />
   </div>
 </template>

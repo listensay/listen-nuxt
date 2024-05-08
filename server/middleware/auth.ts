@@ -26,7 +26,12 @@ export default defineEventHandler(async (event) => {
         }
       }
     } catch (error) {
-      return errorReq(401, event, '登陆已过期')
+      event.context.auth = {
+        error: {
+          code: 401,
+          message: '登陆已过期'
+        }
+      }
     }
   }
 })

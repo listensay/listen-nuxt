@@ -14,16 +14,32 @@ const form = reactive({
   password: ''
 })
 
-const onFinish = (values) => {
-  useApi()
-    .login(values)
-    .then((res) => {
-      cookie.value = res.data
-      useToast().success('登录成功')
-      form.username = ''
-      form.password = ''
-      useAppStore().isLogin = true
-      openDialog.value = false
+const formRef = ref()
+const rules = reactive({
+  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+  password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+})
+
+const onSubmit = () => {
+  formRef.value
+    .validate()
+    .then(() => {
+      // 网络请求
+      useApi()
+        .login(form)
+        .then((res) => {
+          cookie.value = res.data
+          useToast().success('登录成功')
+          form.username = ''
+          form.password = ''
+          useAppStore().isLogin = true
+          openDialog.value = false
+        })
+
+      console.log('first')
+    })
+    .catch((error) => {
+      console.log('error', error)
     })
 }
 
@@ -35,34 +51,18 @@ const register = () => {
 <template>
   <div>
     <MazDialog v-model="openDialog" title="登陆" @close="close">
-      <a-form
-        :model="form"
-        name="basic"
-        autocomplete="off"
-        :label-col="{ style: { width: '70px' } }"
-        @finish="onFinish"
-      >
-        <a-form-item
-          label="用户名"
-          name="username"
-          :rules="[{ required: true, message: 'Please input your username!' }]"
-        >
+      <a-form ref="formRef" :model="form" :rules="rules" :label-col="{ style: { width: '70px' } }">
+        <a-form-item label="用户名">
           <a-input v-model:value="form.username" />
         </a-form-item>
 
-        <a-form-item
-          label="密码"
-          name="password"
-          :rules="[{ required: true, message: 'Please input your password!' }]"
-        >
+        <a-form-item label="密码">
           <a-input-password v-model:value="form.password" />
         </a-form-item>
 
         <div class="w-full flex justify-end mt-2">
-          <a-button type="text" class="mr-2" @click="register"
-            >没有账号？</a-button
-          >
-          <a-button type="primary" html-type="submit">登陆</a-button>
+          <MazBtn type="button" color="secondary" class="mr-2" outline @click="register">没有账号？</MazBtn>
+          <MazBtn type="button" @click="onSubmit">登陆</MazBtn>
         </div>
       </a-form>
     </MazDialog>

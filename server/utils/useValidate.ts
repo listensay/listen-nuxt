@@ -13,6 +13,7 @@ const useValidate = async (body: any, options: any) => {
   try {
     await schema.validateAsync(body)
   } catch (e) {
+    console.log('数据校验错误', e)
     throw new Error('数据校验错误')
   }
 }

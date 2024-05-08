@@ -4,6 +4,10 @@ export const useAuth = (event: any) => {
     throw new Error('非法请求')
   }
 
+  if (event.context.auth.error) {
+    throw new Error('登陆过期')
+  }
+
   return event.context.auth
 }
 

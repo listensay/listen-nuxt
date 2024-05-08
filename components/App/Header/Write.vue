@@ -1,10 +1,12 @@
 <script setup>
 const open = defineModel()
+const toast = useToast()
 
 // 文章表单
 const article = reactive({
   content: '',
-  photos: []
+  photos: [],
+  location: ''
 })
 
 // 上传文件
@@ -26,8 +28,18 @@ const afterRead = (file) => {
 const fileList = ref([])
 
 // 发布文章
-const pushArticle = () => {
-  console.log(article)
+const pushArticle = async () => {
+  try {
+    article.photos = article.photos.toString()
+    const result = await useArticleFetch().postArticle(article)
+
+    if (result.code === 200) {
+      toast.success('发布成功')
+      open.value = false
+    }
+  } catch (error) {
+    // toast.error('发布失败')
+  }
 }
 
 const canlce = () => {
@@ -38,12 +50,7 @@ const canlce = () => {
 <template>
   <MazDialog v-model="open" :no-close="true" @close="canlce">
     <div class="mb-4">
-      <a-textarea
-        v-model:value="article.content"
-        placeholder="这一刻的想法"
-        :auto-size="{ minRows: 8, maxRows: 5 }"
-        :bordered="false"
-      />
+      <a-textarea v-model:value="article.content" placeholder="这一刻的想法" :auto-size="{ minRows: 8, maxRows: 5 }" :bordered="false" />
     </div>
     <div class="mb-4">
       <van-uploader v-model="fileList" :after-read="afterRead" :max-count="2" />

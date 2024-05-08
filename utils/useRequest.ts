@@ -1,8 +1,8 @@
+import useAppStore from '~/store'
+
 export const useRequest = async (url: any, options?: any) => {
   try {
     const reqUrl = url // 你的接口地址
-    const router = useRouter()
-    const route = useRoute()
     const toase = useToast()
 
     // 可以设置默认headers例如
@@ -27,7 +27,7 @@ export const useRequest = async (url: any, options?: any) => {
             })
 
             useCookie('token').value = ''
-            router.push(`/login?from=${route.path}`)
+            useAppStore().isLogin = false
             break
           case 403:
             toase.error('服务器拒绝访问', {

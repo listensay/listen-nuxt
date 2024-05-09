@@ -1,4 +1,6 @@
 <script setup>
+import useAppStore from '~/store'
+
 const open = defineModel()
 const toast = useToast()
 
@@ -36,6 +38,8 @@ const pushArticle = async () => {
     if (result.code === 200) {
       toast.success('发布成功')
       open.value = false
+      useAppStore().fetchGetArticles(1, 10)
+      Object.assign(article, { content: '', photos: [], location: '' })
     }
   } catch (error) {
     // toast.error('发布失败')

@@ -25,7 +25,8 @@ export const getArticles = async (page: number, size: number) => {
         author: {
           select: {
             nickname: true,
-            avatar: true
+            avatar: true,
+            description: true
           }
         }
       }

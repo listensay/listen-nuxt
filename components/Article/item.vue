@@ -1,76 +1,63 @@
 <script setup>
-const showPopover = ref(false)
-const actions = [
-  {
-    text: '赞',
-    icon: 'like-o'
-  },
-  {
-    text: '评论',
-    icon: 'comment-o'
+defineProps({
+  item: {
+    type: Object,
+    default: () => ({})
   }
-]
-
-function selectHandle(e, index) {
-  console.log(e, index)
-}
+})
 </script>
 
 <template>
   <div class="article-item">
-    <div class="avatar">
-      <img src="~/assets/images/avatar.png" alt="avatar" />
+    <div class="profile">
+      <div class="avatar">
+        <img :src="item.author.avatar" alt="avatar" />
+      </div>
+      <div class="info">
+        <div class="name">{{ item.author.nickname }}</div>
+        <div class="username">{{ item.author.description }}</div>
+      </div>
     </div>
     <div class="article-content">
-      <div class="name">很简单</div>
-
-      <div class="content text-sm">
-        <p>1231</p>
+      <div class="content text-sm my-4">
+        <p>{{ item.content }}</p>
       </div>
 
       <div class="flex items-center justify-between mb-2">
-        <time datetime="2021-08-24" class="time text-sm">2021-08-24</time>
-        <div>
-          <van-popover
-            v-model:show="showPopover"
-            :actions="actions"
-            actions-direction="horizontal"
-            placement="left"
-            theme="dark"
-            @select="selectHandle"
-          >
-            <template #reference>
-              <van-button size="small" class="bg-slate-100">
-                <van-icon name="weapp-nav" />
-              </van-button>
-            </template>
-          </van-popover>
-        </div>
+        <time :datetime="$dayjs(item.createdAt).format('YYYY-MM-DD HH:mm:ss')" class="time text-sm">{{
+          $dayjs(item.createdAt).format('YYYY-MM-DD')
+        }}</time>
       </div>
-
-      <div class="article-detail">123123</div>
     </div>
   </div>
 </template>
 
 <style lang="less" scoped>
 .article-item {
-  display: flex;
-  justify-content: space-between;
-  @apply mb-2;
+  @apply p-6;
+  @apply flex-1 mb-4 border-b border-zinc-200;
 
-  .avatar {
-    @apply w-14 h-14 flex-shrink-0 mr-4;
-    img {
-      @apply rounded-md;
+  .profile {
+    display: flex;
+
+    .avatar {
+      @apply w-11 h-14 flex-shrink-0 mr-4;
+
+      img {
+        @apply rounded-sm;
+      }
+    }
+
+    .info {
+      .username {
+        @apply text-sm text-zinc-700;
+      }
     }
   }
 
   .article-content {
-    @apply flex-1 mb-4 border-b border-zinc-200;
-
     .name {
-      @apply mt-1 mb-1 text-indigo-800;
+      @apply mt-1 mb-1 text-zinc-800;
     }
 
     .content {
@@ -79,10 +66,6 @@ function selectHandle(e, index) {
 
     .time {
       @apply block;
-    }
-
-    .article-detail {
-      @apply text-sm p-2 mb-4 bg-zinc-100 text-zinc-600;
     }
   }
 }

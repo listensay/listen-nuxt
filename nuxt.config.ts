@@ -4,13 +4,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     SECRET_KEY: process.env.SECRET_KEY
   },
-  modules: [
-    '@vant/nuxt',
-    '@nuxtjs/tailwindcss',
-    '@ant-design-vue/nuxt',
-    'maz-ui/nuxt',
-    '@pinia/nuxt'
-  ],
+  modules: ['@vant/nuxt', '@nuxtjs/tailwindcss', '@ant-design-vue/nuxt', 'maz-ui/nuxt', '@pinia/nuxt', 'dayjs-nuxt'],
   mazUi: {
     injectComponents: true,
     injectCss: true,

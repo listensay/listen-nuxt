@@ -6,13 +6,11 @@
       <AppHeader />
     </header>
 
-    <main class="m-8 overflow-auto">
+    <main>
       <slot />
     </main>
 
-    <footer class="bg-white p-4 border-t text-center">
-      Milk Blog &copy; 2024
-    </footer>
+    <footer class="bg-white p-4 border-t text-center">Milk Blog &copy; 2024</footer>
   </div>
 </template>
 

@@ -34,8 +34,8 @@ defineProps({
 
 <style lang="less" scoped>
 .article-item {
-  @apply p-6;
-  @apply flex-1 mb-4 border-b border-zinc-200;
+  @apply p-8;
+  @apply flex-1 border-b border-zinc-100;
 
   .profile {
     display: flex;

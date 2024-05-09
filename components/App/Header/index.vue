@@ -1,27 +1,62 @@
 <template>
   <div class="header bg-white relative text-white">
     <AppHeaderTopBar />
-    <div class="header-profile relative brightness-50">
-      <img src="/images/banner.jpg" class="w-full h-64 max-md:h-52 object-cover bg-cover" alt="bg" />
+    <div class="header-profile relative">
+      <img src="/images/banner.jpg" class="w-full h-56 max-md:h-52 object-cover bg-cover" alt="bg" />
     </div>
-    <div class="profle">
-      <div class="flex justify-end items-center">
-        <div class="mr-4 flex flex-col items-end">
-          <div class="text-white text-xl z-10">Milk</div>
+    <div class="profle relative z-10">
+      <div>
+        <div class="ml-8">
+          <div>
+            <img src="~/assets/images/avatar.png" class="w-20 h-20 relative shadow rounded-md" alt="avatar" />
+          </div>
         </div>
-        <div>
-          <img src="~/assets/images/avatar.png" class="w-20 h-20 relative rounded-md shadow" alt="avatar" />
+        <div class="ml-8 py-3 px-0 text-sm text-zinc-600">
+          <div class="mr-4 flex flex-col">
+            <div class="text-lg pb-2">听的说</div>
+            <div class="text-sm">不要倒在黎明前的黑夜里</div>
+          </div>
         </div>
       </div>
-      <div class="desc mb-2 py-4 px-0 flex justify-end text-sm text-zinc-600">不要倒在黎明前的黑夜里</div>
+      <div class="absolute right-8 top-16 text-zinc-600">
+        <MazBtn color="danger" right-icon="heart" size="sm" rounded-size="md" pastel>のように 18</MazBtn>
+      </div>
+    </div>
+    <!-- bio -->
+    <div class="my-4 mx-8 mt-0 border border-zinc-100 rounded-md bg-teal-50">
+      <div class="border-b border-zinc-100 p-4">
+        <div class="name text-sm text-zinc-800 mb-1">加入于</div>
+        <div class="content text-zinc-600 text-sm">2022年11月24日</div>
+      </div>
+      <div class="border-b border-zinc-100 p-4">
+        <div class="name text-sm text-zinc-800 mb-1">生日</div>
+        <div class="content text-zinc-600 text-sm">0527</div>
+      </div>
+      <div class="p-4">
+        <div class="name text-sm text-zinc-800 mb-1">主页</div>
+        <div class="content text-zinc-600 text-sm">http:baidu.com</div>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="less" scoped>
 .header {
+  .header-profile {
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: 9;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.17) 0, #8c8c8c5c);
+    }
+  }
+
   .profle {
-    @apply -mt-16 mr-8;
+    @apply -mt-12 flex justify-between;
   }
 }
 </style>

@@ -86,7 +86,7 @@ const register = () => {
           </a>
         </template>
 
-        <a href="javascript:;" class="mr-2" @click="openWriteHandle">
+        <a href="javascript:;" @click="openWriteHandle">
           <MazIcon name="camera" size="1.45rem" />
         </a>
       </div>

@@ -1,8 +1,8 @@
 <script setup></script>
 
 <template>
-  <div class="app shadow-md">
-    <header class="sticky top-0">
+  <div class="app shadow-sm">
+    <header class="sticky top-0 border-b border-zinc-100">
       <AppHeader />
     </header>
 
@@ -18,7 +18,7 @@
 
 <style lang="less">
 .app {
-  width: 620px;
+  width: 580px;
   @apply overflow-auto bg-white mx-auto;
 
   @media screen and (max-width: 750px) {

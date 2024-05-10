@@ -3,7 +3,8 @@ const useAppStore = defineStore('app', {
     return {
       isLogin: false,
       articleList: [],
-      articleCount: 0
+      articleCount: 0,
+      articleCurrentSelectd: null
     }
   },
   actions: {

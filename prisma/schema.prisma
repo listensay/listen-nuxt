@@ -22,6 +22,7 @@ model User {
   updatedAt   DateTime  @updatedAt
   articles    Article[]
   comments    Comment[]
+  likes        Like[]
 }
 
 model Article {
@@ -32,7 +33,8 @@ model Article {
   keywords    String?
   description String?
   location    String?
-  likes       Int?
+  likes       Like[]
+  likeCount   Int?
   views       Int?
   authorId    Int
   createdAt   DateTime  @default(now())
@@ -41,6 +43,16 @@ model Article {
   comments    Comment[]
 
   @@index([authorId], map: "Article_authorId_fkey")
+}
+
+model Like {
+  userId    Int
+  articleId Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  article   Article  @relation(fields: [articleId], references: [id])
+
+  @@id([userId, articleId])
 }
 
 model Comment {

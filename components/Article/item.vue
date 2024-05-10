@@ -1,9 +1,46 @@
 <script setup>
-defineProps({
+import useAppStore from '~/store'
+
+const { articleCurrentSelectd } = storeToRefs(useAppStore())
+
+const props = defineProps({
   item: {
     type: Object,
     default: () => ({})
   }
+})
+
+// 通过 actions 属性来定义菜单选项
+const actions = [
+  { text: '点赞', icon: 'like-o' },
+  { text: '评论', icon: 'chat-o' }
+]
+
+const toast = useToast()
+
+const onSelect = (action) => {
+  if (action.text === '点赞') {
+    toast.success('(＾∀＾)ﾉｼ	', {
+      position: 'top'
+    })
+    action.text = '取消点赞'
+  } else if (action.text === '取消点赞') {
+    toast.error('(*꒦ິㅿ꒦ີ)', {
+      position: 'top'
+    })
+    action.text = '点赞'
+  }
+}
+
+const open = () => {
+  articleCurrentSelectd.value = props.item.id
+}
+
+const showState = computed({
+  get() {
+    return articleCurrentSelectd.value === props.item.id
+  },
+  set() {}
 })
 </script>
 
@@ -24,9 +61,18 @@ defineProps({
       </div>
 
       <div class="flex items-center justify-between mb-2">
-        <time :datetime="$dayjs(item.createdAt).format('YYYY-MM-DD HH:mm:ss')" class="time text-sm">{{
+        <time :datetime="$dayjs(item.createdAt).format('YYYY-MM-DD HH:mm:ss')" class="time text-sm text-zinc-600">{{
           $dayjs(item.createdAt).format('YYYY-MM-DD')
         }}</time>
+
+        <van-popover v-model:show="showState" placement="left" actions-direction="horizontal" :actions="actions" @select="onSelect" @open="open">
+          <template #reference>
+            <div class="flex w-9 justify-evenly bg-slate-100 p-1 py-2 rounded cursor-pointer">
+              <div class="w-1 h-1 bg-sky-600 rounded-full"></div>
+              <div class="w-1 h-1 bg-sky-600 rounded-full"></div>
+            </div>
+          </template>
+        </van-popover>
       </div>
     </div>
   </div>

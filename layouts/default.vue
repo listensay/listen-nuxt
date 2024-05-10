@@ -2,7 +2,7 @@
 
 <template>
   <div class="app shadow-sm">
-    <header class="sticky top-0 border-b border-zinc-100">
+    <header class="sticky top-0 border-b border-slate-100">
       <AppHeader />
     </header>
 

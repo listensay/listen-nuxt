@@ -39,3 +39,19 @@ export const getArticles = async (page: number, size: number) => {
     throw new Error(error.message)
   }
 }
+
+export const articleLike = async (articleId: number) => {
+  try {
+    // 文章点赞
+    return await usePrisma.article.update({
+      where: {
+        id: articleId
+      },
+      data: {
+        likes: {
+          increment: 1
+        }
+      }
+    })
+  } catch (error) {}
+}

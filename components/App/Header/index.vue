@@ -34,7 +34,7 @@
       </div>
       <div class="p-4">
         <div class="name text-sm text-zinc-800 mb-1">主页</div>
-        <div class="content text-zinc-600 text-sm">http:baidu.com</div>
+        <div class="content text-zinc-600 text-sm">https//:baidu.com</div>
       </div>
     </div>
   </div>

@@ -42,16 +42,29 @@ export const getArticles = async (page: number, size: number) => {
 
 export const articleLike = async (articleId: number) => {
   try {
-    // 文章点赞
-    return await usePrisma.article.update({
+    // 查询文章ID是否存在
+    const article = await usePrisma.article.findUnique({
       where: {
-        id: articleId
+        id: Number(articleId)
+      }
+    })
+
+    if (!article) {
+      throw new Error('文章不存在')
+    }
+
+    // 文章点赞
+    await usePrisma.article.update({
+      where: {
+        id: Number(articleId)
       },
       data: {
-        likes: {
+        likeCount: {
           increment: 1
         }
       }
     })
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 }

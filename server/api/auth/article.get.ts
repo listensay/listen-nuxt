@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
     // 获取数据
     const data = await getArticles(page, size)
 
-    return successReq(data)
+    return successReqBase(data)
   } catch (error: any) {
     return errorReq(500, event, error.message)
   }

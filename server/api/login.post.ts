@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
 
     const token = await login(body.username, body.password)
 
-    return successReq(token, '登陆成功')
+    return successReqBase(token, '登陆成功')
   } catch (error: any) {
     return errorReq(400, event, error.message)
   }

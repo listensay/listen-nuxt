@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
 
     // 注册用户
     await register(body)
-    return successReq('注册成功')
+    return successReqMessage('注册成功')
   } catch (error: any) {
     return errorReq(400, event, error.message)
   }

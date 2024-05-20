@@ -1,8 +1,16 @@
 // 响应信息处理
-export const successReq = (data: any = null, message: string = 'OK', code: number = 200) => {
+export const successReqBase = (data: any = null, message: string = 'OK', code: number = 200) => {
   return {
     code,
     data,
+    message,
+    success: true
+  }
+}
+
+export const successReqMessage = (message: string = 'OK', code: number = 200) => {
+  return {
+    code,
     message,
     success: true
   }

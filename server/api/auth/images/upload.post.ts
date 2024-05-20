@@ -9,7 +9,7 @@ import fs from 'fs'
 import formidable from 'formidable'
 
 // 上传路径
-const uploadDir = './public/images/'
+const uploadDir = process.env.NODE_ENV === 'development' ? './public/images/' : '../public/images/'
 
 // 创建上传目录
 fs.stat(uploadDir, (err, stats) => {
@@ -76,13 +76,8 @@ export default defineEventHandler(async (event) => {
 
   try {
     const data = await upload()
-    return successReq(data)
+    return successReqBase(data)
   } catch (err: any) {
     return errorReq(400, event, err.message)
   }
 })
-
-// 作者：N0ts
-// 链接：https://juejin.cn/post/7360961068166299689
-// 来源：稀土掘金
-// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

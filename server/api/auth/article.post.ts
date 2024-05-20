@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
     // 发布动态
     await postArticle(body)
 
-    return successReq(null, '发布成功')
+    return successReqMessage('发布成功')
   } catch (error: any) {
     return errorReq(500, event, error.message)
   }

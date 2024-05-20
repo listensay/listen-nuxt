@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     // 点赞
     await articleLike(body.id)
 
-    return successReq()
+    return successReqMessage('点赞成功')
   } catch (error: any) {
     return errorReq(500, event, error.message)
   }

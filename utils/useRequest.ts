@@ -22,7 +22,7 @@ export const useRequest = async (url: any, options?: any) => {
             })
             break
           case 401:
-            toase.error('没有访问权限', {
+            toase.error(response._data.message, {
               position: 'top'
             })
 

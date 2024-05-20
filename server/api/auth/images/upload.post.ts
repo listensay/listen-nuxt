@@ -23,10 +23,13 @@ fs.stat(uploadDir, (err, stats) => {
 })
 
 export default defineEventHandler(async (event) => {
+  let auth
+
+  // 判断是否登陆
   try {
-    useAuth(event)
+    auth = useAuth(event)
   } catch (error: any) {
-    return errorReq(401, event, error.message)
+    return errorReq(auth.code, event, auth.message)
   }
 
   // 上传配置

@@ -1,11 +1,11 @@
 // 判断是否登陆
 export const useAuth = (event: any) => {
   if (!event.context.auth) {
-    throw new Error('非法请求')
+    return { code: 401, message: '非法请求' }
   }
 
   if (event.context.auth.error) {
-    throw new Error('登陆过期')
+    return { code: 401, message: '登陆过期' }
   }
 
   return event.context.auth
@@ -13,11 +13,11 @@ export const useAuth = (event: any) => {
 
 export const useAdmin = (event: any) => {
   if (!event.context.auth) {
-    throw new Error('未登陆')
+    return { code: 401, message: '未登陆' }
   }
 
   if (!event.context.auth.isAdmin) {
-    throw new Error('权限无效')
+    return { code: 401, message: '登陆过期' }
   }
 
   return event.context.auth

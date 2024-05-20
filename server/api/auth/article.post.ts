@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   try {
     auth = useAuth(event)
   } catch (error: any) {
-    return errorReq(401, event, error.message)
+    return errorReq(auth.code, event, auth.message)
   }
 
   try {

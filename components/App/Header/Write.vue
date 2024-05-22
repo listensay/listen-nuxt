@@ -42,12 +42,13 @@ const pushArticle = async () => {
       Object.assign(article, { content: '', photos: [], location: '' })
     }
   } catch (error) {
-    // toast.error('发布失败')
+    toast.error('发布失败')
   }
 }
 
 const canlce = () => {
   open.value = false
+  fileList.value = []
 }
 </script>
 

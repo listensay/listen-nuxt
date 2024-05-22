@@ -25,16 +25,16 @@
     <!-- bio -->
     <div class="my-4 mx-8 mt-0 border border-zinc-100 rounded-md bg-teal-50">
       <div class="border-b border-zinc-100 p-4">
-        <div class="name text-sm text-zinc-800 mb-1">加入于</div>
-        <div class="content text-zinc-600 text-sm">2022年11月24日</div>
+        <div class="name text-sm text-zinc-800 mb-1">爱好</div>
+        <div class="content text-zinc-600 text-sm">编程，画画</div>
       </div>
       <div class="border-b border-zinc-100 p-4">
         <div class="name text-sm text-zinc-800 mb-1">生日</div>
         <div class="content text-zinc-600 text-sm">0527</div>
       </div>
       <div class="p-4">
-        <div class="name text-sm text-zinc-800 mb-1">主页</div>
-        <div class="content text-zinc-600 text-sm">https//:baidu.com</div>
+        <div class="name text-sm text-zinc-800 mb-1">个人主页</div>
+        <div class="content text-zinc-600 text-sm">http//:200205.net</div>
       </div>
     </div>
   </div>

@@ -29,7 +29,7 @@ model Article {
   id          Int       @id @default(autoincrement())
   title       String?
   content     String
-  photos      String?
+  images      images[]
   keywords    String?
   description String?
   location    String?
@@ -41,8 +41,6 @@ model Article {
   updatedAt   DateTime  @updatedAt
   author      User      @relation(fields: [authorId], references: [id])
   comments    Comment[]
-
-  @@index([authorId], map: "Article_authorId_fkey")
 }
 
 model Like {
@@ -64,7 +62,11 @@ model Comment {
   authorId  Int
   article   Article  @relation(fields: [articleId], references: [id])
   author    User     @relation(fields: [authorId], references: [id])
+}
 
-  @@index([articleId], map: "Comment_articleId_fkey")
-  @@index([authorId], map: "Comment_authorId_fkey")
+model images {
+  id    Int    @id @default(autoincrement())
+  article   Article  @relation(fields: [articleId], references: [id])
+  articleId Int
+  url   String
 }

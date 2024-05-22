@@ -1,4 +1,5 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import nitroPort from 'nitro-port-module'
+
 export default defineNuxtConfig({
   devtools: { enabled: false },
   runtimeConfig: {
@@ -21,7 +22,12 @@ export default defineNuxtConfig({
         target: 'https://music.163.com/',
         changeOrigin: true
       }
-    }
+    },
+    modules: [
+      nitroPort({
+        port: 4000
+      })
+    ]
   },
   css: ['~/assets/css/index.css']
 })

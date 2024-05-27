@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "darwin-arm64", "rhel-openssl-1.0.x"]
 }
 
 datasource db {
@@ -29,7 +30,7 @@ model Article {
   id          Int       @id @default(autoincrement())
   title       String?
   content     String
-  images      images[]
+  photos      String
   keywords    String?
   description String?
   location    String?
@@ -64,9 +65,16 @@ model Comment {
   author    User     @relation(fields: [authorId], references: [id])
 }
 
-model images {
+model ImagesCategory {
+  id   Int    @id @default(autoincrement())
+  name String @unique()
+  images Images[]
+}
+
+model Images {
   id    Int    @id @default(autoincrement())
-  article   Article  @relation(fields: [articleId], references: [id])
-  articleId Int
+  name  String
   url   String
+  imageCategoryId Int
+  imageCategory ImagesCategory @relation(fields: [imageCategoryId], references: [id])
 }

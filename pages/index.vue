@@ -11,7 +11,14 @@ const { articleList } = storeToRefs(appStore)
   <div class="home">
     <ul>
       <li>
-        <ArticleItem v-for="article in articleList" :key="article.id" :item="article" />
+        <template v-if="articleList.length > 0">
+          <ArticleItem v-for="article in articleList" :key="article.id" :item="article" />
+        </template>
+        <template v-else>
+          <div class="p-8">
+            <AppEmpty />
+          </div>
+        </template>
       </li>
     </ul>
   </div>

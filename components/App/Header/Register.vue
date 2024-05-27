@@ -24,11 +24,12 @@ const rules = reactive({
 const onSubmit = () => {
   formRef.value
     .validate()
-    .then(() => {
-      // 网络请求
-      useApi()
-        .register(form)
-        .then(() => {
+    .then(async () => {
+      try {
+        // 网络请求
+        const result = await useApi().register(form)
+
+        if (result.code === 200) {
           useToast().success('注册成功')
           form.username = ''
           form.password = ''
@@ -36,7 +37,10 @@ const onSubmit = () => {
           form.email = ''
           emit('login')
           openDialog.value = false
-        })
+        }
+      } catch (error) {
+        useToast().success('注册失败')
+      }
     })
     .catch((error) => {
       console.log('error', error)

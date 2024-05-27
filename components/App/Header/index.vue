@@ -29,8 +29,8 @@
         <div class="content text-zinc-600 text-sm">编程，画画</div>
       </div>
       <div class="border-b border-zinc-100 p-4">
-        <div class="name text-sm text-zinc-800 mb-1">生日</div>
-        <div class="content text-zinc-600 text-sm">0527</div>
+        <div class="name text-sm text-zinc-800 mb-1">性格</div>
+        <div class="content text-zinc-600 text-sm">i人</div>
       </div>
       <div class="p-4">
         <div class="name text-sm text-zinc-800 mb-1">个人主页</div>

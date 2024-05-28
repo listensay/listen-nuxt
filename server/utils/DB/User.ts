@@ -55,13 +55,21 @@ export const register = async (body: any) => {
         password: newPassword,
         email,
         nickname,
-        avatar: 'https://avatars.githubusercontent.com/u/11685308?v=4',
+        avatar: '',
         createdAt: new Date(),
         updatedAt: new Date()
       }
     })
+
+    return {
+      code: 200,
+      msg: '注册成功'
+    }
   } catch (error) {
-    throw new Error('注册失败')
+    return {
+      code: 500,
+      msg: '注册失败'
+    }
   }
 }
 

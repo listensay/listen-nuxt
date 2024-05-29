@@ -52,7 +52,10 @@ const images = computed(() => {
   <div class="article-item">
     <div class="profile">
       <div class="avatar">
-        <img :src="item.author.avatar" alt="avatar" />
+        <template v-if="item.author.avatar">
+          <img :src="item.author.avatar" alt="avatar" />
+        </template>
+        <template v-else> <img src="~/assets/images/avatar.png" alt="avatar" /> </template>
       </div>
       <div class="info">
         <div class="name">{{ item.author.nickname }}</div>
@@ -64,7 +67,7 @@ const images = computed(() => {
         <p>{{ item.content }}</p>
         <div v-if="item.photos" class="mt-4">
           <ClientOnly>
-            <MazGallery :images="images" />
+            <MazGallery :images="images" :height="260" />
           </ClientOnly>
         </div>
       </div>

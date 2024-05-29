@@ -62,9 +62,9 @@ const images = computed(() => {
     <div class="article-content">
       <div class="content text-sm my-4">
         <p>{{ item.content }}</p>
-        <div>
+        <div v-if="item.photos" class="mt-4">
           <ClientOnly>
-            <MazGallery :images="images" :height="320" />
+            <MazGallery :images="images" />
           </ClientOnly>
         </div>
       </div>

@@ -51,7 +51,7 @@ export default defineEventHandler(async (event) => {
 
   function upload() {
     return new Promise((resolve, reject) => {
-      form.parse(event.node.req, (err, fields, files: any) => {
+      form.parse(event.node.req, (err, _fields, files: any) => {
         if (err) {
           if (err.message.includes('options.maxTotalFileSize')) {
             return reject('图片超出限制！最大限制 5MB')
@@ -63,7 +63,7 @@ export default defineEventHandler(async (event) => {
         for (const key in files) {
           result.push({
             name: files[key][0].newFilename,
-            url: '/img/uploads/' + files[key][0].newFilename
+            url: '/images/' + files[key][0].newFilename
           })
         }
         resolve(result)

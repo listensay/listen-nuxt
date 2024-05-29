@@ -2,7 +2,7 @@
   <div class="header bg-white relative text-white">
     <AppHeaderTopBar />
     <div class="header-profile relative">
-      <img src="/images/banner.jpg" class="w-full h-56 max-md:h-52 object-cover bg-cover" alt="bg" />
+      <img src="/banner.jpg" class="w-full h-56 max-md:h-52 object-cover bg-cover" alt="bg" />
     </div>
     <div class="profle relative z-10">
       <div>

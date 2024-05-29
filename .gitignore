@@ -23,4 +23,5 @@ logs
 .env.*
 !.env.example
 
-# 忽略文件
+# 忽略文件夹
+/public/images

@@ -78,3 +78,13 @@ model Images {
   imageCategoryId Int
   imageCategory ImagesCategory @relation(fields: [imageCategoryId], references: [id])
 }
+
+model Website {
+  id   Int    @id @default(autoincrement())
+  title String
+  description String
+  keywords String
+  logo String
+  favicon String
+  likeCount  Int
+}

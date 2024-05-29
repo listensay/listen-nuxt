@@ -4,7 +4,10 @@ const useAppStore = defineStore('app', {
       isLogin: !!useCookie('token').value,
       articleList: [],
       articleCount: 0,
-      articleCurrentSelectd: null
+      articleCurrentSelectd: null,
+      website: {
+        likeCount: 0
+      }
     }
   },
   actions: {
@@ -17,6 +20,9 @@ const useAppStore = defineStore('app', {
           this.articleCount = result.data.count
         }
       } catch (error) {}
+    },
+    changeWebsiteLikeCount() {
+      this.website.likeCount = this.website.likeCount++
     }
   }
 })

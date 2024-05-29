@@ -1,3 +1,22 @@
+<script setup>
+import useAppStore from '~/store'
+
+const appStore = useAppStore()
+const { website } = storeToRefs(appStore)
+const isLikeWebsite = useCookie('like')
+const toast = useToast()
+
+const likeHandle = () => {
+  if (!isLikeWebsite.value) {
+    isLikeWebsite.value = true
+    website.value.likeCount += 1
+    toast.success('(＾∀＾)ﾉｼ')
+  } else {
+    toast.success('哎呀点一次就可以啦 (＾∀＾)ﾉｼ')
+  }
+}
+</script>
+
 <template>
   <div class="header bg-white relative text-white">
     <AppHeaderTopBar />
@@ -19,7 +38,7 @@
         </div>
       </div>
       <div class="absolute right-8 top-16 text-zinc-600">
-        <MazBtn color="danger" right-icon="heart" size="sm" rounded-size="md" pastel>のように 18</MazBtn>
+        <MazBtn color="danger" right-icon="heart" size="sm" rounded-size="md" pastel @click="likeHandle">のように {{ website.likeCount }}</MazBtn>
       </div>
     </div>
     <!-- bio -->

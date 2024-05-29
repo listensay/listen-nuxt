@@ -59,7 +59,7 @@ const images = computed(() => {
       </div>
       <div class="info">
         <div class="name">{{ item.author.nickname }}</div>
-        <div class="username">{{ item.author.description }}</div>
+        <!-- <div class="username">{{ item.author.description }}</div> -->
       </div>
     </div>
     <div class="article-content">
@@ -97,9 +97,10 @@ const images = computed(() => {
 
   .profile {
     display: flex;
+    align-items: center;
 
     .avatar {
-      @apply w-11 h-14 flex-shrink-0 mr-4;
+      @apply w-11 h-11 flex-shrink-0 mr-4;
 
       img {
         @apply rounded-sm;

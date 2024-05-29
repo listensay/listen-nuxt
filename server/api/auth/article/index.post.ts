@@ -3,16 +3,13 @@ import Joi from 'joi'
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
-  let auth
-
-  // 判断是否登陆
   try {
-    auth = useAuth(event)
-  } catch (error: any) {
-    return errorReq(auth.code, event, auth.message)
-  }
+    // 判断是否登陆
+    const auth = useAuth(event)
+    if (auth.code !== 200) {
+      return errorReq(auth.code, event, auth.message)
+    }
 
-  try {
     // 校验数据
     await useValidate(body, {
       content: Joi.string().required(),

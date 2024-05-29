@@ -23,12 +23,9 @@ fs.stat(uploadDir, (err, stats) => {
 })
 
 export default defineEventHandler(async (event) => {
-  let auth
-
   // 判断是否登陆
-  try {
-    auth = useAuth(event)
-  } catch (error: any) {
+  const auth = useAuth(event)
+  if (auth.code !== 200) {
     return errorReq(auth.code, event, auth.message)
   }
 
@@ -39,7 +36,7 @@ export default defineEventHandler(async (event) => {
     maxFileSize: 5 * 1024 * 1024, // 5MB 大小限制
     keepExtensions: true, // 保留文件扩展名
     // 文件名重命名
-    filename: (name: string, ext: string, part, form) => {
+    filename: (name: string, ext: string) => {
       return `${name}-${new Date().getTime()}${ext}`
     },
     // 文件过滤

@@ -11,6 +11,20 @@ export default defineEventHandler(async (event) => {
     // 验证token
     try {
       const decoded = <any>jwt.verify(token, secret)
+
+      // 判断用户是否存在
+      const user = await getUserInfo(decoded.id)
+
+      if (!user) {
+        event.context.auth = {
+          error: {
+            code: 401,
+            message: '登陆已过期'
+          }
+        }
+        return
+      }
+
       // 验证是否是管理员
       const isAdmin = await checkAdmin(decoded.id)
 

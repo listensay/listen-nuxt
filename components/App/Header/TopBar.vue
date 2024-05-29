@@ -6,7 +6,6 @@ const { isLogin } = storeToRefs(AppStore)
 const toast = useToast()
 
 if (process.client) {
-  isLogin.value = !!useCookie('token').value
   isLogin.value = AppStore.isLogin
 }
 
@@ -36,13 +35,13 @@ const pause = () => {
   toast.success('暂停音乐')
 }
 
-const playHandle = () => {
-  isPlay.value = true
-}
+// const playHandle = () => {
+//   isPlay.value = true
+// }
 
-const pauseHandle = () => {
-  isPlay.value = false
-}
+// const pauseHandle = () => {
+//   isPlay.value = false
+// }
 
 const openWrite = ref(false)
 

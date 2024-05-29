@@ -8,6 +8,7 @@ export const useAuth = (event: any) => {
     return { code: 401, message: '登陆过期' }
   }
 
+  event.context.auth.code = 200
   return event.context.auth
 }
 
@@ -20,5 +21,6 @@ export const useAdmin = (event: any) => {
     return { code: 401, message: '登陆过期' }
   }
 
+  event.context.auth.code = 200
   return event.context.auth
 }

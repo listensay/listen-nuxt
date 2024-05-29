@@ -1,7 +1,7 @@
 const useAppStore = defineStore('app', {
   state: () => {
     return {
-      isLogin: false,
+      isLogin: !!useCookie('token').value,
       articleList: [],
       articleCount: 0,
       articleCurrentSelectd: null

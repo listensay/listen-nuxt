@@ -42,6 +42,10 @@ const showState = computed({
   },
   set() {}
 })
+
+const images = computed(() => {
+  return props.item.photos.split(',')
+})
 </script>
 
 <template>
@@ -58,6 +62,11 @@ const showState = computed({
     <div class="article-content">
       <div class="content text-sm my-4">
         <p>{{ item.content }}</p>
+        <div>
+          <ClientOnly>
+            <MazGallery :images="images" :height="320" />
+          </ClientOnly>
+        </div>
       </div>
 
       <div class="flex items-center justify-between mb-2">

@@ -26,7 +26,7 @@ export const useRequest = async (url: any, options?: any) => {
               position: 'top'
             })
 
-            useCookie('token').value = ''
+            useCookie('token').value = null
             useAppStore().isLogin = false
             break
           case 403:

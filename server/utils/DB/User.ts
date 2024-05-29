@@ -145,7 +145,7 @@ export const getUserInfo = async (id: number) => {
   })
 
   if (!user) {
-    throw new Error('用户不存在')
+    return false
   }
 
   return user

@@ -4,7 +4,7 @@ export const postArticle = async (data: any) => {
     const result = await usePrisma.article.create({ data })
     return result
   } catch (error: any) {
-    throw new Error(error.message)
+    console.log(error)
   }
 }
 

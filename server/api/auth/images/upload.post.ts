@@ -9,8 +9,6 @@ fs.stat(uploadDir, (err) => {
   if (err) {
     fs.mkdir(uploadDir, (err) => {
       if (err) {
-        console.error('创建图片目录失败', err)
-
         return errorReq(500, event, '创建图片目录失败')
       }
     })

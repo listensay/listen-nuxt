@@ -6,10 +6,11 @@ const { website } = storeToRefs(appStore)
 const isLikeWebsite = useCookie('like')
 const toast = useToast()
 
-const likeHandle = () => {
+const likeHandle = async () => {
   if (!isLikeWebsite.value) {
     isLikeWebsite.value = true
     website.value.likeCount += 1
+    await useWebsiteFetch().website()
     toast.success('(＾∀＾)ﾉｼ')
   } else {
     toast.success('哎呀点一次就可以啦 (＾∀＾)ﾉｼ')

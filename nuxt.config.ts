@@ -1,4 +1,5 @@
 import nitroPort from 'nitro-port-module'
+import nitroPublic from 'nitro-public-module'
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
@@ -26,7 +27,8 @@ export default defineNuxtConfig({
     modules: [
       nitroPort({
         port: 4000
-      })
+      }),
+      nitroPublic()
     ]
   },
   css: ['~/assets/css/index.css']

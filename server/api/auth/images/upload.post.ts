@@ -1,22 +1,17 @@
-/*
- * @Author: N0ts
- * @Date: 2024-03-12 16:33:26
- * @Description: 文件上传
- * @FilePath: \bto\server\api\manage\file\index.post.ts
- * @Mail：mail@n0ts.top
- */
 import fs from 'fs'
 import formidable from 'formidable'
 
 // 上传路径
-const uploadDir = process.env.NODE_ENV === 'development' ? './public/images/' : '../public/images/'
+const uploadDir = '../public/images/'
 
 // 创建上传目录
-fs.stat(uploadDir, (err, stats) => {
+fs.stat(uploadDir, (err) => {
   if (err) {
     fs.mkdir(uploadDir, (err) => {
       if (err) {
         console.error('创建图片目录失败', err)
+
+        return errorReq(500, event, '创建图片目录失败')
       }
     })
   }
@@ -49,12 +44,12 @@ export default defineEventHandler(async (event) => {
     }
   })
 
-  function upload() {
+  const upload = () => {
     return new Promise((resolve, reject) => {
       form.parse(event.node.req, (err, _fields, files: any) => {
         if (err) {
           if (err.message.includes('options.maxTotalFileSize')) {
-            return reject('图片超出限制！最大限制 5MB')
+            return reject(new Error('图片超出限制！最大限制 5MB'))
           }
           return reject(err)
         }
